@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support · Machka</title>
+  <meta name="description" content="Get help with Machka, the notch toolkit for Mac: contact support, terms of use and privacy policy.">
+  <meta name="theme-color" content="#0b0b0c">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0b0c;
+      --surface: #141415;
+      --line: #232325;
+      --text: #ededee;
+      --muted: #9a9a9e;
+      --faint: #6c6c71;
+      --label: #7d7d82;
+      --body: #cdcdd1;
+      /* Machka's amber from the App Store artwork, used sparingly. */
+      --accent: #f5a623;
+      --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, sans-serif;
+      --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 var(--sans);
+      -webkit-font-smoothing: antialiased;
+      /* Keeps the footer at the bottom on short pages. */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--text);
+    }
+
+    /* Header */
+
+    .site-header {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font: 600 17px/1 var(--display);
+      letter-spacing: -0.01em;
+    }
+
+    /* The notch, drawn as the mark. */
+    .brand-mark {
+      width: 26px;
+      height: 9px;
+      background: var(--accent);
+      border-radius: 0 0 7px 7px;
+      position: relative;
+      top: -4px;
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 22px;
+      font-size: 14px;
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--text);
+    }
+
+    /* Page */
+
+    main {
+      flex: 1 0 auto;
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 9vh 24px 96px;
+    }
+
+    h1 {
+      margin: 0;
+      font: 650 clamp(38px, 7vw, 52px) / 1.1 var(--display);
+      letter-spacing: -0.025em;
+    }
+
+    .lead {
+      margin: 20px 0 0;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--body);
+    }
+
+    h2 {
+      margin: 56px 0 14px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--label);
+    }
+
+    .contact {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 24px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 2px solid var(--accent);
+      border-radius: 4px 12px 12px 4px;
+      text-decoration: none;
+      transition: border-color 0.15s;
+    }
+
+    .contact:hover {
+      border-color: #333336;
+      border-left-color: var(--accent);
+    }
+
+    .contact-label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-address {
+      display: block;
+      font: 500 clamp(18px, 4.6vw, 22px) / 1.3 var(--display);
+      letter-spacing: -0.01em;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-action {
+      flex-shrink: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .contact:hover .contact-action {
+      color: var(--accent);
+    }
+
+    .hint {
+      margin: 14px 0 0;
+      font-size: 14.5px;
+      color: var(--muted);
+    }
+
+    .links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .links a {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      font: 500 18px/1.3 var(--display);
+    }
+
+    .links a span {
+      color: var(--faint);
+      font: 14px var(--sans);
+    }
+
+    .links a:hover span {
+      color: var(--accent);
+    }
+
+    /* Footer */
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+    }
+
+    .site-footer-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 28px 24px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px 24px;
+      font-size: 13.5px;
+      color: var(--faint);
+    }
+
+    .site-footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      color: var(--text);
+    }
+
+    .site-footer nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .site-header {
+        padding: 20px 16px;
+      }
+
+      main {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .contact {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px 20px;
+      }
+
+      .site-footer-inner {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Machka</span>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Support</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-of-use.html">Terms</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Support</h1>
+    <p class="lead">Questions about Machka, a bug to report or an idea for a new tool? Write to us and we’ll get back to you.</p>
+
+    <h2>Contact</h2>
+    <a class="contact" href="mailto:apptechlab@proton.me?subject=Machka%20support">
+      <span>
+        <span class="contact-label">E-mail</span>
+        <span class="contact-address">apptechlab@proton.me</span>
+      </span>
+      <span class="contact-action">Write →</span>
+    </a>
+    <p class="hint">For a bug, mention your macOS version and Mac model, and what you did right before it happened.</p>
+
+    <h2>Documents</h2>
+    <ul class="links">
+      <li><a href="terms-of-use.html">Terms of Use <span>Read →</span></a></li>
+      <li><a href="privacy-policy.html">Privacy Policy <span>Read →</span></a></li>
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span>© 2026 Machka</span>
+      <nav aria-label="Footer">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+        <a href="mailto:apptechlab@proton.me">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
