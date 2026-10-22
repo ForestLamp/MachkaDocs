@@ -1,0 +1,67 @@
+# Machka Privacy Policy
+
+**Effective date:** October 22, 2026
+
+Machka ("the app") is a toolkit for the MacBook notch. This policy explains what information the app handles and what happens to it.
+
+**In short: Machka does not collect, store on a server, sell or share your personal data.** There are no accounts, no analytics, no advertising and no tracking. Everything the app works with stays on your Mac, except for the few requests described below that you turn on yourself.
+
+## Information we collect
+
+None. The developer of Machka does not run any servers that receive data from the app and has no access to anything you do in it.
+
+## Information that stays on your Mac
+
+To work, some tools keep information locally, inside the app's sandbox container or the system preferences of your Mac account:
+
+| Feature | What is kept | Where and how long |
+|---|---|---|
+| Clipboard | Text you copy (up to the last 50 items) | In memory only. Cleared when you quit the app or clear the history. |
+| Screenshots | Screenshots copied straight to the clipboard; the list of screenshots you hid | Image files in the app's container, limited to the most recent ones (older ones are deleted automatically); the hidden list in app preferences. Removing a screenshot from your own folder only hides it in Machka, the file stays. |
+| Screenshots folder | Read access to the folder you pick (Desktop by default) | A security-scoped bookmark in app preferences. Files are only read, never uploaded. |
+| Shelf | References to files you drop onto the shelf | In memory only. The files themselves are not copied or moved. |
+| Notes widget | The text of your note | App preferences. |
+| Translate widget | Text you enter for translation | Translated on your Mac by Apple's Translation framework; not saved by Machka. |
+| TV server | Your server name, the folders you share, a server ID | App preferences (folders as security-scoped bookmarks). |
+| Code widget (off by default) | Usage limits of your coding assistants; an OpenRouter API key if you add one | Limits are read from local files; the API key is stored in the macOS Keychain. |
+| Settings | Layout of tools, mascot and other preferences | App preferences. |
+
+Deleting Machka removes its container and the data above. The Machka plugin written to `~/.claude` (see below) can be removed from the Code settings, or by deleting `~/.claude/skills/machka-usage` and `~/.claude/machka`.
+
+## Features that connect to other apps or services
+
+These features only run when you use them, and only exchange the data described here.
+
+- **Media controls.** Machka asks Music and Spotify on your Mac what is playing and sends play, pause and skip commands to them using Apple Events. macOS asks for your permission first. For Spotify, the album artwork is downloaded from the address Spotify provides, so Spotify's servers see a standard web request from your Mac (including your IP address). Spotify's own privacy policy applies to that request.
+- **Code widget: Claude Code.** If you turn it on and grant access to your `~/.claude` folder, Machka installs a small plugin there. While Claude Code runs, the plugin writes your current usage limits to local files that Machka reads. Nothing is sent anywhere by Machka.
+- **Code widget: Codex.** If you grant access to your `~/.codex` folder, Machka reads the usage limits that Codex records in its local session logs. Nothing is sent anywhere.
+- **Code widget: OpenRouter.** If you add an OpenRouter API key, Machka sends it to `openrouter.ai` to read your key's usage and limits. The key is sent only to OpenRouter, over HTTPS. OpenRouter's privacy policy applies to that request.
+- **TV server.** When you turn it on, Machka shares the folders you pick with TVs and other DLNA/UPnP devices on your local network. Any device on that network can see and play the files in those folders while the server runs. Nothing is sent outside your local network. Share only folders you are comfortable showing to everyone on that network.
+- **Translate.** Translation uses Apple's on-device Translation framework. Language downloads are handled by macOS.
+
+## Third parties
+
+Machka contains no third-party analytics, advertising or crash-reporting code. When you use the features above, your interaction with Spotify, OpenRouter, Anthropic (Claude Code), OpenAI (Codex) or Apple is governed by their own terms and privacy policies. Machka is not affiliated with any of these companies.
+
+If you downloaded Machka from the Mac App Store, Apple may give the developer aggregated, anonymous statistics (such as installs and crash reports) if you opted in to sharing them with app developers in your Mac's settings. That is controlled by Apple and by your system settings.
+
+## Children
+
+Machka is not directed at children and does not knowingly collect information from anyone, including children under 13.
+
+## Your choices
+
+- Turn any tool or widget off, or hide it, in Machka's Settings.
+- Clear the clipboard history at any time.
+- Remove folder access and the OpenRouter key in Settings.
+- Revoke Machka's control of Music or Spotify in **System Settings → Privacy & Security → Automation**.
+
+Because the developer does not hold any of your data, there is nothing to request, export or delete on our side: removing the app removes its data.
+
+## Changes to this policy
+
+If this policy changes, the new version will be posted on this page with a new effective date. Material changes will also be mentioned in the app's release notes.
+
+## Contact
+
+apptechlab@proton.me
