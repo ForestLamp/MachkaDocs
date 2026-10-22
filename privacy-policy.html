@@ -1,67 +1,558 @@
-# Machka Privacy Policy
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy · Machka</title>
+  <meta name="description" content="Machka doesn't collect, sell or share your personal data. What the app keeps on your Mac and which features connect to other services.">
+  <meta name="theme-color" content="#0b0b0c">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0b0c;
+      --surface: #141415;
+      --line: #232325;
+      --line-strong: #333336;
+      --text: #ededee;
+      --muted: #9a9a9e;
+      --faint: #6c6c71;
+      --label: #7d7d82;
+      --body: #cdcdd1;
+      /* Machka's amber from the App Store artwork, used sparingly. */
+      --accent: #f5a623;
+      --link-line: rgba(237, 237, 238, 0.3);
+      --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, sans-serif;
+      --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
 
-**Effective date:** October 22, 2026
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-Machka ("the app") is a toolkit for the MacBook notch. This policy explains what information the app handles and what happens to it.
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-padding-top: 24px;
+    }
 
-**In short: Machka does not collect, store on a server, sell or share your personal data.** There are no accounts, no analytics, no advertising and no tracking. Everything the app works with stays on your Mac, except for the few requests described below that you turn on yourself.
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 var(--sans);
+      -webkit-font-smoothing: antialiased;
+      /* Keeps the footer at the bottom on short pages. */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-## Information we collect
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--link-line);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
 
-None. The developer of Machka does not run any servers that receive data from the app and has no access to anything you do in it.
+    a:hover {
+      text-decoration-color: var(--accent);
+    }
 
-## Information that stays on your Mac
+    code {
+      font: 0.86em var(--mono);
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 0.1em 0.35em;
+      overflow-wrap: anywhere;
+    }
 
-To work, some tools keep information locally, inside the app's sandbox container or the system preferences of your Mac account:
+    strong {
+      font-weight: 600;
+    }
 
-| Feature | What is kept | Where and how long |
-|---|---|---|
-| Clipboard | Text you copy (up to the last 50 items) | In memory only. Cleared when you quit the app or clear the history. |
-| Screenshots | Screenshots copied straight to the clipboard; the list of screenshots you hid | Image files in the app's container, limited to the most recent ones (older ones are deleted automatically); the hidden list in app preferences. Removing a screenshot from your own folder only hides it in Machka, the file stays. |
-| Screenshots folder | Read access to the folder you pick (Desktop by default) | A security-scoped bookmark in app preferences. Files are only read, never uploaded. |
-| Shelf | References to files you drop onto the shelf | In memory only. The files themselves are not copied or moved. |
-| Notes widget | The text of your note | App preferences. |
-| Translate widget | Text you enter for translation | Translated on your Mac by Apple's Translation framework; not saved by Machka. |
-| TV server | Your server name, the folders you share, a server ID | App preferences (folders as security-scoped bookmarks). |
-| Code widget (off by default) | Usage limits of your coding assistants; an OpenRouter API key if you add one | Limits are read from local files; the API key is stored in the macOS Keychain. |
-| Settings | Layout of tools, mascot and other preferences | App preferences. |
+    /* Header */
 
-Deleting Machka removes its container and the data above. The Machka plugin written to `~/.claude` (see below) can be removed from the Code settings, or by deleting `~/.claude/skills/machka-usage` and `~/.claude/machka`.
+    .site-header,
+    .layout {
+      width: 100%;
+    }
 
-## Features that connect to other apps or services
+    .layout {
+      flex: 1 0 auto;
+    }
 
-These features only run when you use them, and only exchange the data described here.
+    .site-header {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
-- **Media controls.** Machka asks Music and Spotify on your Mac what is playing and sends play, pause and skip commands to them using Apple Events. macOS asks for your permission first. For Spotify, the album artwork is downloaded from the address Spotify provides, so Spotify's servers see a standard web request from your Mac (including your IP address). Spotify's own privacy policy applies to that request.
-- **Code widget: Claude Code.** If you turn it on and grant access to your `~/.claude` folder, Machka installs a small plugin there. While Claude Code runs, the plugin writes your current usage limits to local files that Machka reads. Nothing is sent anywhere by Machka.
-- **Code widget: Codex.** If you grant access to your `~/.codex` folder, Machka reads the usage limits that Codex records in its local session logs. Nothing is sent anywhere.
-- **Code widget: OpenRouter.** If you add an OpenRouter API key, Machka sends it to `openrouter.ai` to read your key's usage and limits. The key is sent only to OpenRouter, over HTTPS. OpenRouter's privacy policy applies to that request.
-- **TV server.** When you turn it on, Machka shares the folders you pick with TVs and other DLNA/UPnP devices on your local network. Any device on that network can see and play the files in those folders while the server runs. Nothing is sent outside your local network. Share only folders you are comfortable showing to everyone on that network.
-- **Translate.** Translation uses Apple's on-device Translation framework. Language downloads are handled by macOS.
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      text-decoration: none;
+      font: 600 17px/1 var(--display);
+      letter-spacing: -0.01em;
+    }
 
-## Third parties
+    /* The notch, drawn as the mark. */
+    .brand-mark {
+      width: 26px;
+      height: 9px;
+      background: var(--accent);
+      border-radius: 0 0 7px 7px;
+      position: relative;
+      top: -4px;
+    }
 
-Machka contains no third-party analytics, advertising or crash-reporting code. When you use the features above, your interaction with Spotify, OpenRouter, Anthropic (Claude Code), OpenAI (Codex) or Apple is governed by their own terms and privacy policies. Machka is not affiliated with any of these companies.
+    .site-nav {
+      display: flex;
+      gap: 22px;
+      font-size: 14px;
+    }
 
-If you downloaded Machka from the Mac App Store, Apple may give the developer aggregated, anonymous statistics (such as installs and crash reports) if you opted in to sharing them with app developers in your Mac's settings. That is controlled by Apple and by your system settings.
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
 
-## Children
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--text);
+    }
 
-Machka is not directed at children and does not knowingly collect information from anyone, including children under 13.
+    /* Document layout: contents on the left on wide screens, text on the right. */
 
-## Your choices
+    .layout {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px 96px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 64px;
+    }
 
-- Turn any tool or widget off, or hide it, in Machka's Settings.
-- Clear the clipboard history at any time.
-- Remove folder access and the OpenRouter key in Settings.
-- Revoke Machka's control of Music or Spotify in **System Settings → Privacy & Security → Automation**.
+    @media (min-width: 960px) {
+      .layout {
+        grid-template-columns: 200px minmax(0, 680px);
+        padding-top: 40px;
+      }
+    }
 
-Because the developer does not hold any of your data, there is nothing to request, export or delete on our side: removing the app removes its data.
+    .toc {
+      display: none;
+    }
 
-## Changes to this policy
+    @media (min-width: 960px) {
+      .toc {
+        display: block;
+        position: sticky;
+        top: 32px;
+        align-self: start;
+        padding-top: 112px;
+        font-size: 13.5px;
+      }
+    }
 
-If this policy changes, the new version will be posted on this page with a new effective date. Material changes will also be mentioned in the app's release notes.
+    .toc p {
+      margin: 0 0 12px;
+      color: var(--label);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
 
-## Contact
+    .toc ol {
+      list-style: none;
+      margin: 0;
+      padding: 0 0 0 14px;
+      border-left: 1px solid var(--line);
+    }
 
-apptechlab@proton.me
+    .toc li + li {
+      margin-top: 8px;
+    }
+
+    .toc a {
+      color: var(--muted);
+      text-decoration: none;
+      line-height: 1.4;
+      display: block;
+    }
+
+    .toc a:hover {
+      color: var(--text);
+    }
+
+    /* Document */
+
+    .doc-head {
+      padding: 32px 0 36px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font: 650 clamp(34px, 6vw, 46px) / 1.1 var(--display);
+      letter-spacing: -0.025em;
+    }
+
+    .meta {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .lead {
+      margin: 28px 0 0;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .summary {
+      margin: 28px 0 0;
+      padding: 18px 20px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 2px solid var(--accent);
+      border-radius: 4px 10px 10px 4px;
+    }
+
+    .summary p {
+      margin: 0;
+    }
+
+    section {
+      padding-top: 40px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font: 600 21px/1.3 var(--display);
+      letter-spacing: -0.012em;
+    }
+
+    h2 .num {
+      color: var(--label);
+      font-variant-numeric: tabular-nums;
+      margin-right: 10px;
+    }
+
+    p {
+      margin: 0 0 14px;
+      color: var(--body);
+    }
+
+    ul {
+      margin: 0 0 14px;
+      padding-left: 20px;
+      color: var(--body);
+    }
+
+    li {
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    li::marker {
+      color: var(--label);
+    }
+
+    /* Data table: rows become stacked cards on narrow screens. */
+
+    .data {
+      width: 100%;
+      margin: 8px 0 14px;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+
+    .data th {
+      text-align: left;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--label);
+      padding: 0 14px 10px 0;
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .data td {
+      vertical-align: top;
+      padding: 14px 14px 14px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--body);
+    }
+
+    .data td:first-child {
+      color: var(--text);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 640px) {
+      .data thead {
+        display: none;
+      }
+
+      .data,
+      .data tbody,
+      .data tr,
+      .data td {
+        display: block;
+      }
+
+      .data tr {
+        padding: 16px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .data td {
+        padding: 0;
+        border: 0;
+      }
+
+      .data td + td {
+        margin-top: 8px;
+      }
+
+      .data td:first-child {
+        font-size: 15.5px;
+        white-space: normal;
+      }
+
+      .data td[data-label]::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 11.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--label);
+        margin-bottom: 2px;
+      }
+    }
+
+    /* Footer */
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+    }
+
+    .site-footer-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 28px 24px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px 24px;
+      font-size: 13.5px;
+      color: var(--faint);
+    }
+
+    .site-footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      color: var(--text);
+    }
+
+    .site-footer nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .site-header {
+        padding: 20px 16px;
+      }
+
+      .layout {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .site-footer-inner {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .doc-head {
+        padding-top: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Machka</span>
+    <nav class="site-nav" aria-label="Legal">
+      <a href="privacy-policy.html" aria-current="page">Privacy</a>
+      <a href="terms-of-use.html">Terms</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="toc" aria-label="On this page">
+      <p>On this page</p>
+      <ol>
+        <li><a href="#collect">Information we collect</a></li>
+        <li><a href="#local">Information on your Mac</a></li>
+        <li><a href="#connected">Connected features</a></li>
+        <li><a href="#third-parties">Third parties</a></li>
+        <li><a href="#children">Children</a></li>
+        <li><a href="#choices">Your choices</a></li>
+        <li><a href="#changes">Changes</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </aside>
+
+    <main>
+      <div class="doc-head">
+        <h1>Privacy Policy</h1>
+        <p class="meta">Effective October 22, 2026</p>
+        <p class="lead">Machka is a toolkit for the MacBook notch. This policy explains what information the app handles and what happens to it.</p>
+        <div class="summary">
+          <p><strong>In short:</strong> Machka does not collect, sell or share your personal data, and has no servers to send it to. There are no accounts, no analytics, no ads and no tracking. Everything the app works with stays on your Mac, except for the few requests below that you turn on yourself.</p>
+        </div>
+      </div>
+
+      <section id="collect">
+        <h2>Information we collect</h2>
+        <p>None. The developer of Machka does not run any servers that receive data from the app and has no access to anything you do in it.</p>
+      </section>
+
+      <section id="local">
+        <h2>Information that stays on your Mac</h2>
+        <p>To work, some tools keep information locally, inside the app’s sandbox container or the preferences of your Mac user account.</p>
+        <table class="data">
+          <thead>
+            <tr><th>Feature</th><th>What is kept</th><th>Where and for how long</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Clipboard</td>
+              <td data-label="What is kept">Text you copy, up to the last 50 items</td>
+              <td data-label="Where">In memory only. Cleared when you quit the app or clear the history.</td>
+            </tr>
+            <tr>
+              <td>Screenshots</td>
+              <td data-label="What is kept">Screenshots copied straight to the clipboard; the list of screenshots you hid</td>
+              <td data-label="Where">Image files in the app’s container, only the most recent ones (older ones are deleted automatically); the hidden list in app preferences. Removing a screenshot from your own folder only hides it in Machka: the file stays.</td>
+            </tr>
+            <tr>
+              <td>Screenshots folder</td>
+              <td data-label="What is kept">Read access to the folder you pick (Desktop by default)</td>
+              <td data-label="Where">A security-scoped bookmark in app preferences. Files are only read, never uploaded.</td>
+            </tr>
+            <tr>
+              <td>Shelf</td>
+              <td data-label="What is kept">References to files you drop onto the shelf</td>
+              <td data-label="Where">In memory only. The files themselves are not copied or moved.</td>
+            </tr>
+            <tr>
+              <td>Notes</td>
+              <td data-label="What is kept">The text of your note</td>
+              <td data-label="Where">App preferences.</td>
+            </tr>
+            <tr>
+              <td>Translate</td>
+              <td data-label="What is kept">Text you enter for translation</td>
+              <td data-label="Where">Translated on your Mac by Apple’s Translation framework. Not saved by Machka.</td>
+            </tr>
+            <tr>
+              <td>TV server</td>
+              <td data-label="What is kept">Your server name, the folders you share, a server ID</td>
+              <td data-label="Where">App preferences; folders as security-scoped bookmarks.</td>
+            </tr>
+            <tr>
+              <td>Code widget</td>
+              <td data-label="What is kept">Usage limits of your coding assistants; an OpenRouter API key, if you add one. Off by default.</td>
+              <td data-label="Where">Limits are read from local files. The API key is stored in the macOS Keychain.</td>
+            </tr>
+            <tr>
+              <td>Settings</td>
+              <td data-label="What is kept">Layout of tools, mascot and other preferences</td>
+              <td data-label="Where">App preferences.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Deleting Machka removes its container and the data above. The plugin Machka adds to <code>~/.claude</code> (see below) can be removed in the Code settings, or by deleting <code>~/.claude/skills/machka-usage</code> and <code>~/.claude/machka</code>.</p>
+      </section>
+
+      <section id="connected">
+        <h2>Features that connect to other apps or services</h2>
+        <p>These features run only when you use them, and only exchange the data described here.</p>
+        <ul>
+          <li><strong>Media controls.</strong> Machka asks Music and Spotify on your Mac what is playing and sends play, pause and skip commands to them with Apple Events. macOS asks for your permission first. For Spotify, album artwork is downloaded from the address Spotify provides, so Spotify’s servers see an ordinary web request from your Mac, including your IP address. Spotify’s privacy policy applies to that request.</li>
+          <li><strong>Code widget: Claude Code.</strong> If you turn it on and grant access to your <code>~/.claude</code> folder, Machka installs a small plugin there. While Claude Code runs, the plugin writes your current usage limits to local files that Machka reads. Machka sends nothing anywhere.</li>
+          <li><strong>Code widget: Codex.</strong> If you grant access to your <code>~/.codex</code> folder, Machka reads the usage limits Codex records in its local session logs. Machka sends nothing anywhere.</li>
+          <li><strong>Code widget: OpenRouter.</strong> If you add an OpenRouter API key, Machka sends it to <code>openrouter.ai</code> over HTTPS to read your key’s usage and limits. The key is sent only to OpenRouter, and OpenRouter’s privacy policy applies to that request.</li>
+          <li><strong>TV server.</strong> When you turn it on, Machka shares the folders you pick with TVs and other DLNA/UPnP devices on your local network. Any device on that network can see and play the files in those folders while the server runs. Nothing is sent outside your local network. Share only folders you’re comfortable showing to everyone on that network.</li>
+          <li><strong>Translate.</strong> Translation runs on your Mac with Apple’s Translation framework. Language downloads are handled by macOS.</li>
+        </ul>
+      </section>
+
+      <section id="third-parties">
+        <h2>Third parties</h2>
+        <p>Machka contains no third-party analytics, advertising or crash-reporting code. When you use the features above, your interaction with Spotify, OpenRouter, Anthropic (Claude Code), OpenAI (Codex) or Apple is governed by their own terms and privacy policies. Machka is not affiliated with any of these companies.</p>
+        <p>If you downloaded Machka from the Mac App Store, Apple may share anonymous, aggregated statistics such as installs and crash reports with the developer, if you allowed sharing with app developers in your Mac’s settings. This is controlled by Apple and your system settings.</p>
+      </section>
+
+      <section id="children">
+        <h2>Children</h2>
+        <p>Machka is not directed at children and does not knowingly collect information from anyone, including children under 13.</p>
+      </section>
+
+      <section id="choices">
+        <h2>Your choices</h2>
+        <ul>
+          <li>Turn any tool or widget off, or hide it, in Machka’s Settings.</li>
+          <li>Clear the clipboard history at any time.</li>
+          <li>Remove folder access and the OpenRouter key in Settings.</li>
+          <li>Revoke Machka’s control of Music or Spotify in System Settings → Privacy &amp; Security → Automation.</li>
+        </ul>
+        <p>Because the developer holds none of your data, there is nothing to request, export or delete on our side: removing the app removes its data.</p>
+      </section>
+
+      <section id="changes">
+        <h2>Changes to this policy</h2>
+        <p>If this policy changes, the new version will be posted on this page with a new effective date. Material changes will also be mentioned in the app’s release notes.</p>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Questions about this policy: <a href="mailto:apptechlab@proton.me">apptechlab@proton.me</a></p>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span>© 2026 Machka</span>
+      <nav aria-label="Footer">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+        <a href="mailto:apptechlab@proton.me">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
